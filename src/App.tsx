@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import AsteroidForm from "./Asteroid/AsteroidForm";
+import AsteroidDetails from "./Asteroid/AsteroidDetails";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const App = (): JSX.Element => {
+  // Task : Asteroid details
+  // Get list of asteroid: https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=DEMO_KEY
+  // Get asteroid details by ID: https://api.nasa.gov/neo/rest/v1/neo/3542519?api_key=DEMO_KEY
+  // generate API key here: https://api.nasa.gov/
+
+  // Create app to display a form. 
+// The form has a field to enter the id of an asteroid. 
+// On submit, move to new screen and show the details about the asteroid. 
+// The form has another button called "Random asteroid". 
+// On clicking that button, fetch the details of a random asteroid and display it.
+
+// Note: TypeScript and Material UI for Css must be used 
+
+return (
+    <>
+      <div className="Container">
+        <AsteroidForm/>
+        <AsteroidDetails/>
+      </div>
+    </>
   );
-}
-
+};
 export default App;
