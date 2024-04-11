@@ -5,7 +5,8 @@
 /.pnp
 .pnp.js
 /src/Component
-
+/src/Asteroid/AsteroidFormClassComp.tsx
+/package-lock.json
 # testing
 /coverage
 
