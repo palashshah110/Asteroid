@@ -6,6 +6,7 @@ import DisplayAsteroidDetalisClassComp from "./Asteroid/DisplayAsteroidDetalisCl
 
 const App: React.FC = () => {
   return (
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<AsteroidFormClassComp />} />
@@ -13,9 +14,9 @@ const App: React.FC = () => {
           path="/getAsteroidDetalis"
           element={<DisplayAsteroidDetalisClassComp />}
         />
-      </Routes>
-    </BrowserRouter>
+      </Routes> 
+    </BrowserRouter> 
   );
-};
+}; 
 
 export default App;
