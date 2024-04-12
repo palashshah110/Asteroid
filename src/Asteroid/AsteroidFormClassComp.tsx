@@ -4,8 +4,15 @@ import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import withRouter from "./WithRouter.tsx";
-const apiKey = process.env.API_KEY || '6202jSPpG2GqkXh8LHBaPbumSZ1WVY8evbdOavNs';
-class AsteroidFormClassComp extends React.Component {
+
+const apiKey = process.env.API_KEY || "6202jSPpG2GqkXh8LHBaPbumSZ1WVY8evbdOavNs";
+interface propsType{
+  navigate:(data,state)=>void;
+}
+interface State {
+  AsteroidID: number;
+}
+class AsteroidFormClassComp extends React.Component<propsType,State>{
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +27,7 @@ class AsteroidFormClassComp extends React.Component {
       const data = await response1.data;
       const randomid = Math.floor(Math.random() * data.near_earth_objects.length);
       const newdata = data.near_earth_objects[randomid];
+      // const {name} =newdata;      
       this.props.navigate('/getAsteroidDetalis',{state:newdata})
     } catch (err) {
       toast.error("Error fetching random asteroid. Please try again.");

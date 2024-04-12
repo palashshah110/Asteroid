@@ -2,10 +2,23 @@ import { Box, Card, CardContent, Typography } from "@mui/material";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import withRouter from "./WithRouter.tsx";
+interface State {
+  asteroidDetails: any;
+}
+class DisplayAsteroidDetalisClassComp extends Component <any,State>{
+  constructor(props)
+  {
+    super(props)
+    this.state={
+      asteroidDetails:null
+    }
+  }
+  componentDidMount(): void {
+    const data = this.props.location.state;
+    this.setState({asteroidDetails:data});
+  }
 
-class DisplayAsteroidDetalisClassComp extends Component {
   render() {
-    const asteroidDetails = this.props.location.state;
     return (
       <>
         <Link
@@ -26,32 +39,32 @@ class DisplayAsteroidDetalisClassComp extends Component {
             <Card sx={{ minWidth: 275 }}>
               <CardContent>
                 <Typography sx={{ mb: 1.5 }}>
-                  Name: {asteroidDetails.name}
+                  Name: {this.state.asteroidDetails?.name}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
-                  Designation: {asteroidDetails.designation}
+                  Designation: {this.state.asteroidDetails?.designation}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
-                  Id: {asteroidDetails.id}
+                  Id: {this.state.asteroidDetails?.id}
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
                   Kilometer:
                   {
-                      asteroidDetails.estimated_diameter.kilometers
-                    .estimated_diameter_max
+                      this.state.asteroidDetails?.estimated_diameter.kilometers
+                    .estimated_diameter_max 
                   }
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
                   Meter:
                   {
-                      asteroidDetails.estimated_diameter.meters
+                      this.state.asteroidDetails?.estimated_diameter.meters
                         .estimated_diameter_max
                   }
                 </Typography>
                 <Typography sx={{ mb: 1.5 }}>
                   Miles:
                   {
-                      asteroidDetails.estimated_diameter.miles
+                      this.state.asteroidDetails?.estimated_diameter.miles
                         .estimated_diameter_max
                   }
                 </Typography>

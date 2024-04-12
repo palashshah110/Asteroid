@@ -6,6 +6,9 @@
 .pnp.js
 /src/Component
 /package-lock.json
+/src/Asteroid/AsteroidForm.tsx
+/src/Asteroid/AsteroidDetails.tsx
+/src/Asteroid/DisplayAsteroidDetalis.tsx
 # testing
 /coverage
 
