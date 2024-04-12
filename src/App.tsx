@@ -1,32 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
-import AsteroidForm from "./Asteroid/AsteroidForm.tsx";
-import DisplayAsteroidDetails from "./Asteroid/DisplayAsteroidDetalis.tsx";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import AsteroidFormClassComp from "./Asteroid/AsteroidFormClassComp.tsx";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AsteroidFormClassComp from "./Asteroid/AsteroidFormClassComp.tsx";
+import DisplayAsteroidDetalisClassComp from "./Asteroid/DisplayAsteroidDetalisClassComp.tsx";
 
 const App: React.FC = () => {
-  const [asteroidDetails, setAsteroidDetails] = useState<any>(undefined);
-
   return (
-
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={<AsteroidForm setAsteroidDetails={setAsteroidDetails} />}
-          />
-          <Route
-            path="/getAsteroidDetalis"
-            element={
-      <DisplayAsteroidDetails asteroidDetails={asteroidDetails} />}
-          />          
-          {/* <Route
-            path="/Class"
-            element={<AsteroidFormClassComp asteroidDetails={asteroidDetails} />}
-          /> */}
-        </Routes>
-      </Router>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<AsteroidFormClassComp />} />
+        <Route
+          path="/getAsteroidDetalis"
+          element={<DisplayAsteroidDetalisClassComp />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 export default function AsteroidForm(props: {
   setAsteroidDetails: (data: any) => void;
 }) {
+
   const [AsteroidID, setAsteroidID] = useState<number>(0);
 
   const navigate = useNavigate();
