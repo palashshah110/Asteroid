@@ -1,17 +1,17 @@
 import { Box, Button, TextField } from "@mui/material";
 import axios from "axios";
 import React from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import withRouter from "./WithRouter.tsx";
 
 const apiKey = process.env.API_KEY || "6202jSPpG2GqkXh8LHBaPbumSZ1WVY8evbdOavNs";
 interface propsType{
-  navigate:(data,state)=>void;
+  navigate:(data:any,state:any)=>void;
 }
 interface State {
   AsteroidID: number;
-}
+  }
 class AsteroidFormClassComp extends React.Component<propsType,State>{
   constructor(props) {
     super(props);
@@ -27,10 +27,9 @@ class AsteroidFormClassComp extends React.Component<propsType,State>{
       const data = await response1.data;
       const randomid = Math.floor(Math.random() * data.near_earth_objects.length);
       const newdata = data.near_earth_objects[randomid];
-      // const {name} =newdata;      
       this.props.navigate('/getAsteroidDetalis',{state:newdata})
     } catch (err) {
-      toast.error("Error fetching random asteroid. Please try again.");
+      console.log("Error fetching random asteroid. Please try again.");
     }
   };
   handleClick = async () => {
@@ -44,7 +43,7 @@ class AsteroidFormClassComp extends React.Component<propsType,State>{
         this.props.navigate('/getAsteroidDetalis',{state:data});
       }
     } catch (err) {
-      toast.error("Please Check Asteroid Id");
+    console.log('Please Check Asteroid Id');      
     }
   };
   render() {
@@ -72,6 +71,7 @@ class AsteroidFormClassComp extends React.Component<propsType,State>{
               <TextField
                 id="standard-basic"
                 label="Enter Asteroid ID"
+                placeholder="Enter Asteroid ID"
                 variant="standard"
                 type="number"
                 value={this.state.AsteroidID === 0 ? "" : this.state.AsteroidID}
@@ -85,6 +85,7 @@ class AsteroidFormClassComp extends React.Component<propsType,State>{
                   color="info"
                   variant="outlined"
                   sx={{ mr: 3 }}
+                  
                   onClick={()=>this.handleClick()}
                   disabled={this.state.AsteroidID?.toString().length < 7}
                 >
@@ -94,6 +95,7 @@ class AsteroidFormClassComp extends React.Component<propsType,State>{
                   color="success"
                   variant="contained"
                   onClick={this.handleRandomClick}
+                  name="RandomBtn"
                 >
                   Random Asteroid
                 </Button>
