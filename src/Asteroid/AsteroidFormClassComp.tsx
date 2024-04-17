@@ -1,7 +1,6 @@
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
 import axios from "axios";
 import React from "react";
-import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import withRouter from "./WithRouter.tsx";
 
@@ -11,12 +10,14 @@ interface propsType{
 }
 interface State {
   AsteroidID: number;
-  }
+  errorMessage:string;
+}
 class AsteroidFormClassComp extends React.Component<propsType,State>{
   constructor(props) {
     super(props);
     this.state = {
       AsteroidID: 0,
+      errorMessage:''
     };
   }
   handleRandomClick = async () => {
@@ -29,7 +30,7 @@ class AsteroidFormClassComp extends React.Component<propsType,State>{
       const newdata = data.near_earth_objects[randomid];
       this.props.navigate('/getAsteroidDetalis',{state:newdata})
     } catch (err) {
-      console.log("Error fetching random asteroid. Please try again.");
+      this.setState({errorMessage:'Error fetching random asteroid. Please try again.'}) 
     }
   };
   handleClick = async () => {
@@ -43,7 +44,7 @@ class AsteroidFormClassComp extends React.Component<propsType,State>{
         this.props.navigate('/getAsteroidDetalis',{state:data});
       }
     } catch (err) {
-    console.log('Please Check Asteroid Id');      
+     this.setState({ errorMessage: 'Please Check Asteroid Id' }); 
     }
   };
   render() {
@@ -95,15 +96,14 @@ class AsteroidFormClassComp extends React.Component<propsType,State>{
                   color="success"
                   variant="contained"
                   onClick={this.handleRandomClick}
-                  name="RandomBtn"
                 >
                   Random Asteroid
                 </Button>
               </Box>
+              {this.state.errorMessage && <Typography>{this.state.errorMessage}</Typography>}
             </Box>
           </Box>
         </Box>
-        <ToastContainer />
       </>
     );
   }
